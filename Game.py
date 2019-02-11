@@ -1,3 +1,4 @@
+
 # Name: Mads
 # Date: 05/01/19
 # Description: Epic Dungeon adventure with determining if you will escape or not.
@@ -31,6 +32,10 @@ def choosepath():
         path = input("Which path will you take? 1 or 2?: ")
 
     return path
+
+#---------------------------------------------------------------#
+
+
 
 #---------------------------------------------------------------#
 
@@ -91,16 +96,16 @@ if Gamerule_PlayGame == 1:
         RandomPotionRNG = 0
         ChestRandomKey = 0
         KeyBDoor = 0
-        MazeDoor = 0
+        MazeDoor = "0"
         MazeFinish = 0
         #Gamerule Functions
-        Gamerule_PlayGame = 1
+        Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
         Gamerule_KeyADoor = 0
         Gamerule_KeyFinder = 0
         Gamerule_Start_MazeDoor = 0
-        Gamerule_Start_MazeDoor2 = 0
+        Gamerule_Start_MazeDoor2 = 1
         Gamerule_CorridorDamage = 0
         Gamerule_CorridorDamage2 = 0
         Gamerule_OutsideDoor1 = 0
@@ -111,36 +116,37 @@ if Gamerule_PlayGame == 1:
         Gamerule_RNGEnding = 0
         Gamerule_TeleportCube = 0 
         #Start Game
-        print()
-        print("1: You stand up, you see that the wall is old and has a large crack running through it.")
-        print("2: You also see that the door is slightly ajar and could be pushed open")
-        print()
-        choice = choosepath()
-        if choice == "1":
-            print("You try pulling open the crack but nothing happens")
-            print("You decide to run at the wall breaking it open but getting hurt")
+        if Gamerule_PlayGame == 1:
             print()
-            HP = (HP - NegativeHP)
-            print ("You now have " + str(HP) + "HP")
+            print("1: You stand up, you see that the wall is old and has a large crack running through it.")
+            print("2: You also see that the door is slightly ajar and could be pushed open")
             print()
-            print("There is a hollow room on the other side of the wall")
-            WallBreak = random.randint(1, 2)
-            if WallBreak == 1:
-                print("There is a statue that casts a blessing on you")
-                print("As you walk out of the room you start to feel more refreshed")
-                print("HP +1")
-                HP = HP + 1
-                Gamerule_StartIntro1 = 1
-            else:
-                print("There is a door that leads to stairs going furthur down the dungeon")
-                Enter = input("Do you want to go furthur down? y or n: ")
-                if Enter == "n":
-                     print("You walk back not having achieved anything")
-                     Gamerule_StartIntro1 = 1
-                elif Enter == "y":
-                    Gamerule_Dungeon = 1
-                else:
+            choice = choosepath()
+            if choice == "1":
+                print("You try pulling open the crack but nothing happens")
+                print("You decide to run at the wall breaking it open but getting hurt")
+                print()
+                HP = (HP - NegativeHP)
+                print ("You now have " + str(HP) + "HP")
+                print()
+                print("There is a hollow room on the other side of the wall")
+                WallBreak = random.randint(1, 2)
+                if WallBreak == 1:
+                    print("There is a statue that casts a blessing on you")
+                    print("As you walk out of the room you start to feel more refreshed")
+                    print("HP +1")
+                    HP = HP + 1
                     Gamerule_StartIntro1 = 1
+                else:
+                    print("There is a door that leads to stairs going furthur down the dungeon")
+                    Enter = input("Do you want to go furthur down? y or n: ")
+                    if Enter == "n":
+                         print("You walk back not having achieved anything")
+                         Gamerule_StartIntro1 = 1
+                    elif Enter == "y":
+                        Gamerule_Dungeon = 1
+                    else:
+                        Gamerule_StartIntro1 = 1
 
                     #Player decides to go back into main room
                     
@@ -362,28 +368,49 @@ if Gamerule_PlayGame == 1:
                     Gamerule_RNGEnding = 1
                 if Path == "2":
                     Gamerule_Start_MazeDoor2 = 1
+                    print("You pull the lever causing the door to slowly open.")
+                    print("In front of you there are three doors")
+                    print("On the wall there is some writing")
+                    print()
+                    print("THE ESCAPE YOU SEEK WILL BE FOUND")
+                    print("SOME OF THE DOORS YOU PICK WILL GET")
+                    print("YOU HONE SAFE AND SOUND")
+                    print()
 
-        if Gamerule_Start_MazeDoor2 == 1
-            print("You pull the lever causing the door to slowly open.")
-            print("In front of you there are three doors")
-            print("On the wall there is some writing")
-            print()
-            print("THE ESCAPE YOU SEEK WILL BE FOUND")
-            print("SOME OF THE DOORS YOU PICK WILL GET")
-            print("YOU HONE SAFE AND SOUND")
-            print("")
-            while MazeFinish != 10:
-                
-                while MazeDoor != 1 and MazeDoor != 2 and MazeDoor != 3:
-                    MazeDoor = input("You see three doors, Which will you take? 1, 2 or 3")
-                    if MazeDoor != random.randint(1, 2, 3):
-                        MazeFinish = F
+        if Gamerule_Start_MazeDoor2 == 1:
+            while MazeDoor != "1" and MazeDoor != "2" and MazeDoor != "3":
+                print("Room 1")
+                print()
+                print("1: Left")
+                print("2: Forward")
+                print("3: Right")
+                MazeDoor = input("Which door do you want to go through: ")
+                print()
+            if MazeDoor == "1":
+                print("You walk into the next room")
+                print()
+                if Gamerule_Start_MazeDoor2 == 1:
+                    while MazeDoor != "1" and MazeDoor != "2" and MazeDoor != "3":
+                        print("Room 2")
+                        print()
+                        print("1: Left")
+                        print("2: Forward")
+                        print("3: Right")
+                        MazeDoor = input("Which door do you want to go through: ")
+                        print()
+                    if MazeDoor == "1":
+                        print("You walk into the next room")
+                        print()
+                    else:
+                        print("You walk back to the start of the maze")
+                        print()
+            else:
+                print("You walk back to the start of the maze")
+                print()
+            
+                        
                     
                     
-
-                  
-        if Gamerule_CorridorDamage == 1:
-            print()
         if Gamerule_CorridorDamage == 1:
             NegativeHP = random.randint(2, 5)
             print()
@@ -527,4 +554,3 @@ if Gamerule_PlayGame == 1:
             print("You now have " + str(HP) + " HP")
             Gamerule_StartIntro1 = 1
             
-
