@@ -378,6 +378,7 @@ if Gamerule_PlayGame == 1:
                     print()
 
         if Gamerule_Start_MazeDoor2 == 1:
+            MazeDoor = "0"
             while MazeDoor != "1" and MazeDoor != "2" and MazeDoor != "3":
                 print("Room 1")
                 print()
@@ -389,21 +390,21 @@ if Gamerule_PlayGame == 1:
             if MazeDoor == "1":
                 print("You walk into the next room")
                 print()
-                if Gamerule_Start_MazeDoor2 == 1:
-                    while MazeDoor != "1" and MazeDoor != "2" and MazeDoor != "3":
-                        print("Room 2")
-                        print()
-                        print("1: Left")
-                        print("2: Forward")
-                        print("3: Right")
-                        MazeDoor = input("Which door do you want to go through: ")
-                        print()
-                    if MazeDoor == "1":
-                        print("You walk into the next room")
-                        print()
-                    else:
-                        print("You walk back to the start of the maze")
-                        print()
+                MazeDoor = "0"
+                while MazeDoor != "1" and MazeDoor != "2" and MazeDoor != "3":
+                    print("Room 2")
+                    print()
+                    print("1: Left")
+                    print("2: Forward")
+                    print("3: Right")
+                    MazeDoor = input("Which door do you want to go through: ")
+                    print()
+                if MazeDoor == "2":
+                    print("You walk into the next room")
+                    print()
+                else:
+                    print("You walk back to the start of the maze")
+                    print()
             else:
                 print("You walk back to the start of the maze")
                 print()
