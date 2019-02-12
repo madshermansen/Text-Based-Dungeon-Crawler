@@ -35,7 +35,19 @@ def choosepath():
 
 #---------------------------------------------------------------#
 
-
+def StartMaze():
+    print()
+    print("1: Left")
+    print("2: Forward")
+    print("3: Right")
+    Path = input("Which door do you want to go through?: ")
+    print()
+    if Path == AnswerKey:
+        return(Count + 1)
+        print("You walk through the door")
+    else:
+        print("You walk in the wrong door. and head back to the start of the maze")
+        return(0)
 
 #---------------------------------------------------------------#
 
@@ -87,6 +99,7 @@ if Gamerule_PlayGame == 1:
     playagain = "yes"
     while playagain == "yes" or playagain == "y":
         #functions
+        Count = 0
         HP = 20
         NegativeHP = random.randint(1, 2)
         GoblinHP = 6
@@ -98,6 +111,7 @@ if Gamerule_PlayGame == 1:
         KeyBDoor = 0
         MazeDoor = "0"
         MazeFinish = 0
+        AnswerKey = "0"
         #Gamerule Functions
         Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
@@ -114,7 +128,8 @@ if Gamerule_PlayGame == 1:
         Gamerule_FallBackSpawn = 0
         Gamerule_MagicDoor = 0
         Gamerule_RNGEnding = 0
-        Gamerule_TeleportCube = 0 
+        Gamerule_TeleportCube = 0
+        
         #Start Game
         if Gamerule_PlayGame == 1:
             print()
@@ -376,38 +391,20 @@ if Gamerule_PlayGame == 1:
                     print("SOME OF THE DOORS YOU PICK WILL GET")
                     print("YOU HONE SAFE AND SOUND")
                     print()
+                    
 
+    
         if Gamerule_Start_MazeDoor2 == 1:
-            MazeDoor = "0"
-            while MazeDoor != "1" and MazeDoor != "2" and MazeDoor != "3":
-                print("Room 1")
-                print()
-                print("1: Left")
-                print("2: Forward")
-                print("3: Right")
-                MazeDoor = input("Which door do you want to go through: ")
-                print()
-            if MazeDoor == "1":
-                print("You walk into the next room")
-                print()
-                MazeDoor = "0"
-                while MazeDoor != "1" and MazeDoor != "2" and MazeDoor != "3":
-                    print("Room 2")
-                    print()
-                    print("1: Left")
-                    print("2: Forward")
-                    print("3: Right")
-                    MazeDoor = input("Which door do you want to go through: ")
-                    print()
-                if MazeDoor == "2":
-                    print("You walk into the next room")
-                    print()
-                else:
-                    print("You walk back to the start of the maze")
-                    print()
-            else:
-                print("You walk back to the start of the maze")
-                print()
+            Count = 0
+            while Count != 10:
+                path = "0"
+                if Count == 0:
+                    AnswerKey = "1"
+                    Count = StartMaze()
+                elif Count == 1:
+                    AnswerKey = "1"
+                    Count = StartMaze()
+            
             
                         
                     
