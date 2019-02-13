@@ -122,6 +122,7 @@ if Gamerule_PlayGame == 1:
         MazeDoor = "0"
         MazeFinish = 0
         AnswerKey = "0"
+        Dice = 0
         # Gamerule Functions
         Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
@@ -129,7 +130,7 @@ if Gamerule_PlayGame == 1:
         Gamerule_KeyADoor = 0
         Gamerule_KeyFinder = 0
         Gamerule_Start_MazeDoor = 0
-        Gamerule_Start_MazeDoor2 = 1
+        Gamerule_Start_MazeDoor2 = 0
         Gamerule_CorridorDamage = 0
         Gamerule_CorridorDamage2 = 0
         Gamerule_OutsideDoor1 = 0
@@ -137,7 +138,8 @@ if Gamerule_PlayGame == 1:
         Gamerule_Stealth = 0
         Gamerule_FallBackSpawn = 0
         Gamerule_MagicDoor = 0
-        Gamerule_RNGEnding = 0
+        Gamerule_RNGEnding = 1
+        Gamerule_RNGEnding2 = 0
         Gamerule_TeleportCube = 0
 
         # Start Game
@@ -398,6 +400,32 @@ if Gamerule_PlayGame == 1:
                     print("SOME OF THE DOORS YOU PICK WILL GET")
                     print("YOU HONE SAFE AND SOUND")
                     print()
+
+        if Gamerule_RNGEnding == 1:
+            print()
+            print("There is a seven sided dice in the room. Do you roll it?")
+            while Dice != "yes" and Dice !=  "y" and Dice !=  "no" and Dice !=  "n":
+                Dice = input("Roll the dice, y or n?: ")
+            if Dice == "yes" or Dice ==  "y":
+                Dice = random.randint(1, 7)
+                if Dice == 7:
+                    print()
+                    print("You roll a 7, a hidden door reveals itself and you walk in")
+                    Gamerule_RNGEnding2 = 1
+                else:
+                    print()
+                    print("Your rolled a " + str(Dice) + ". Nothing happened.")
+            if Dice == "no" or Dice == "n":
+                Gamerule_Start_MazeDoor2 = 1
+                print("You walk back into the corridor and pull the leaver causing the door to slowly open")
+                print("In front of you there are three doors")
+                print("On the wall there is some writing")
+                print()
+                print("THE ESCAPE YOU SEEK WILL BE FOUND")
+                print("SOME OF THE DOORS YOU PICK WILL GET")
+                print("YOU HONE SAFE AND SOUND")
+                print()
+
 
         if Gamerule_Start_MazeDoor2 == 1:
             Count = 0
