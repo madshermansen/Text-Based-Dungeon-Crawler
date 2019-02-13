@@ -1,4 +1,3 @@
-
 # Name: Mads
 # Date: 05/01/19
 # Description: Epic Dungeon adventure with determining if you will escape or not.
@@ -6,12 +5,14 @@
 import random
 import time
 
-#---------------------------------------------------------------#
+
+# ---------------------------------------------------------------#
 
 # Introduction
 
 def DisplayIntroduction():
-    print("You wake up in a cold cold dungeon, and before you appear a dark siluette in the figure of a young boy or a woman, as your vision")
+    print(
+        "You wake up in a cold cold dungeon, and before you appear a dark siluette in the figure of a young boy or a woman, as your vision")
     print("slowly appears. You try talking to the figure but it doesnt respond or look your way.")
     print("Then you pass out...")
     print()
@@ -22,83 +23,92 @@ def DisplayIntroduction():
     print("UPON YOU, UNLESS YOU ESCAPE")
     print("THIS DUNGEON")
 
-#---------------------------------------------------------------#
+
+# ---------------------------------------------------------------#
 
 # Choosing Path
 
 def choosepath():
     path = ""
-    while path != "1" and path != "2": # Checking for the input
+    while path != "1" and path != "2":  # Checking for the input
         path = input("Which path will you take? 1 or 2?: ")
 
     return path
 
-#---------------------------------------------------------------#
+
+# ---------------------------------------------------------------#
 
 def StartMaze():
+    print("Room " + str(Count+1))
     print()
     print("1: Left")
     print("2: Forward")
     print("3: Right")
+    print("4: Down")
+    print()
     Path = input("Which door do you want to go through?: ")
     print()
     if Path == AnswerKey:
-        return(Count + 1)
         print("You walk through the door")
+        return (Count + 1)
     else:
         print("You walk in the wrong door. and head back to the start of the maze")
-        return(0)
+        return (0)
 
-#---------------------------------------------------------------#
+
+# ---------------------------------------------------------------#
 
 HP = 20
 NegativeHP = 0
 GoblinHP = 6
 ChildGoblinHP = 4
 
-def LoseHP():
 
+def LoseHP():
     print("Save Text = You have lost some HP")
     print("You have lost " + str(NegativeHP) + (" HP"))
+
 
 DrinkPotion = ""
 
 # Play again function
 
 
-#playagain = "yes"
-#while playagain == "yes" or playagain == "y":
+# playagain = "yes"
+# while playagain == "yes" or playagain == "y":
 #    DisplayIntroduction()
 #    choice = choosepath()
 #    checkpath(choice)
 #    playagain = input("Do you want to play again? type yes or y to continue playing: ")
 
 
-
-Threats=(["Ill beat you silly!", "You're just a mere mortal! Get out of my sight", "What if i turn you into a toaster!", "I'll beat you in chess!", "You are a rump-faced ape!", "Im not insulting you, im describing you", "You are'nt invited to my birthday party anymore!", "Go sit on a pinecone", "Who's this clown", ])
-Attacks=(["Slice", "Stab", "Pummel", "Riposte" ])
-MeleeAttacks=(["Punch", "Kick", "Headbutt", "Throw rock" ])
-GoblinAttacks=(["hits", "throws a rock at", "spits on", "jumps on your head and smacks" ])
-NumbersCode=(["1", "2"])
-
-##############################################################
-
-                     # Run Game #
+Threats = (
+["Ill beat you silly!", "You're just a mere mortal! Get out of my sight", "What if i turn you into a toaster!",
+ "I'll beat you in chess!", "You are a rump-faced ape!", "Im not insulting you, im describing you",
+ "You are'nt invited to my birthday party anymore!", "Go sit on a pinecone", "Who's this clown", ])
+Attacks = (["Slice", "Stab", "Pummel", "Riposte"])
+MeleeAttacks = (["Punch", "Kick", "Headbutt", "Throw rock"])
+GoblinAttacks = (["hits", "throws a rock at", "spits on", "jumps on your head and smacks"])
+NumbersCode = (["1", "2"])
 
 ##############################################################
 
-#If want specific place change to 0 and change      if Gamerule_PlayGame == 1:      to      if Gamerule_PlayGame == 0:
-                     
-Gamerule_PlayGame = 1             
+# Run Game #
 
 ##############################################################
 
-#Start Game
+# If want specific place change to 0 and change      if Gamerule_PlayGame == 1:      to      if Gamerule_PlayGame == 0:
+
+Gamerule_PlayGame = 1
+
+##############################################################
+
+# Start Game
 
 if Gamerule_PlayGame == 1:
     playagain = "yes"
     while playagain == "yes" or playagain == "y":
-        #functions
+        # functions
         Count = 0
         HP = 20
         NegativeHP = random.randint(1, 2)
@@ -112,7 +122,7 @@ if Gamerule_PlayGame == 1:
         MazeDoor = "0"
         MazeFinish = 0
         AnswerKey = "0"
-        #Gamerule Functions
+        # Gamerule Functions
         Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
@@ -129,8 +139,8 @@ if Gamerule_PlayGame == 1:
         Gamerule_MagicDoor = 0
         Gamerule_RNGEnding = 0
         Gamerule_TeleportCube = 0
-        
-        #Start Game
+
+        # Start Game
         if Gamerule_PlayGame == 1:
             print()
             print("1: You stand up, you see that the wall is old and has a large crack running through it.")
@@ -156,20 +166,20 @@ if Gamerule_PlayGame == 1:
                     print("There is a door that leads to stairs going furthur down the dungeon")
                     Enter = input("Do you want to go furthur down? y or n: ")
                     if Enter == "n":
-                         print("You walk back not having achieved anything")
-                         Gamerule_StartIntro1 = 1
+                        print("You walk back not having achieved anything")
+                        Gamerule_StartIntro1 = 1
                     elif Enter == "y":
                         Gamerule_Dungeon = 1
                     else:
                         Gamerule_StartIntro1 = 1
 
-                    #Player decides to go back into main room
-                    
+                    # Player decides to go back into main room
+
             if Gamerule_StartIntro1 == 1:
                 print()
                 print("You walk back from the hollow room not having done anything")
 
-                #Player chooses to go into the dungeon
+                # Player chooses to go into the dungeon
 
             if Gamerule_Dungeon == 1:
                 print()
@@ -252,8 +262,7 @@ if Gamerule_PlayGame == 1:
                 if Path == "1":
                     Gamerule_Start_MazeDoor = 1
 
-
-            #Different doors, Key, Maze, Find Key.
+            # Different doors, Key, Maze, Find Key.
 
         if Gamerule_KeyADoor == 1:
             print("1")
@@ -261,7 +270,8 @@ if Gamerule_PlayGame == 1:
                 print("You open the door with ease, the key slides in and you walk in.")
                 print("There is a long hallway lit with candles, you walk down it not thinking about anything")
                 print("1: You see a small corridor that you could fit in if you pushed yourself very hard.")
-                print("2: You also see a vent like system that you could easily crawl through but would need to push yourself")
+                print(
+                    "2: You also see a vent like system that you could easily crawl through but would need to push yourself")
                 print()
                 Path = ""
                 while Path != "1" and Path != "2":
@@ -272,13 +282,13 @@ if Gamerule_PlayGame == 1:
                 if Path == "2":
                     print()
                     Gamerule_OutsideDoor1 = 1
-                    
-      
+
+
             elif KeyA == 0:
                 Path = ""
                 print("It seems you do not have a key so you cannot open the door.")
                 while Path != "1" and Path != "2":
-                    Path = input("Which door do you want to open? 1, or 2: ")                   
+                    Path = input("Which door do you want to open? 1, or 2: ")
                 if Path == "2":
                     Gamerule_KeyFinder = 1
                     Gamerule_KeyADoor = 0
@@ -286,7 +296,6 @@ if Gamerule_PlayGame == 1:
                     Gamerule_Start_MazeDoor = 1
                     Gamerule_KeyADoor = 0
 
-                    
         if Gamerule_KeyFinder == 1:
             print("You walk into the room where the door closes behind you")
             print("You walk next to the chest hesitating to open it")
@@ -323,7 +332,6 @@ if Gamerule_PlayGame == 1:
                         Gamerule_KeyADoor = 1
                     if Path == "2":
                         Gamerule_Start_MazeDoor = 1
-                        
 
             if KeyBDoor == "No" or KeyBDoor == "no":
                 print("You decide to walk back")
@@ -338,7 +346,6 @@ if Gamerule_PlayGame == 1:
                     Gamerule_KeyADoor = 1
                 if Path == "1":
                     Gamerule_Start_MazeDoor = 1
-        
 
         if Gamerule_MagicDoor == 1:
             print()
@@ -369,7 +376,7 @@ if Gamerule_PlayGame == 1:
                     Gamerule_KeyADoor = 1
                 if Path == "1":
                     Gamerule_Start_MazeDoor = 1
-                    
+
         if Gamerule_Start_MazeDoor == 1:
             print()
             print("You see two doors and a dead end.")
@@ -391,24 +398,52 @@ if Gamerule_PlayGame == 1:
                     print("SOME OF THE DOORS YOU PICK WILL GET")
                     print("YOU HONE SAFE AND SOUND")
                     print()
-                    
 
-    
         if Gamerule_Start_MazeDoor2 == 1:
             Count = 0
-            while Count != 10:
+            while Count != 14:
                 path = "0"
                 if Count == 0:
                     AnswerKey = "1"
                     Count = StartMaze()
                 elif Count == 1:
+                    AnswerKey = "2"
+                    Count = StartMaze()
+                elif Count == 2:
                     AnswerKey = "1"
                     Count = StartMaze()
-            
-            
-                        
-                    
-                    
+                elif Count == 3:
+                    AnswerKey = "2"
+                    Count = StartMaze()
+                elif Count == 4:
+                    AnswerKey = "3"
+                    Count = StartMaze()
+                elif Count == 5:
+                    AnswerKey = "3"
+                    Count = StartMaze()
+                elif Count == 6:
+                    AnswerKey = "4"
+                    Count = StartMaze()
+                elif Count == 7:
+                    AnswerKey = "3"
+                    Count = StartMaze()
+                elif Count == 8:
+                    AnswerKey = "2"
+                    Count = StartMaze()
+                elif Count == 9:
+                    AnswerKey = "2"
+                    Count = StartMaze()
+                elif Count == 10:
+                    AnswerKey = "2"
+                    Count = StartMaze()
+                elif Count == 11:
+                    AnswerKey = "1"
+                    Count = StartMaze()
+                elif Count == 12:
+                    AnswerKey = "2"
+                    Count = StartMaze()
+            print("You walk through the door and the maze is over. You see a blue shining orb in a glass cage")
+
         if Gamerule_CorridorDamage == 1:
             NegativeHP = random.randint(2, 5)
             print()
@@ -431,7 +466,8 @@ if Gamerule_PlayGame == 1:
                 print("You decide to sleep in the corridor. You try finding a space to sleep on the floor")
                 print("Finally you fall asleep")
                 time.sleep(5)
-                print("You wake up to large banging, there are gaurds at the door. The door opens and they see you sleeping on the floor")
+                print(
+                    "You wake up to large banging, there are gaurds at the door. The door opens and they see you sleeping on the floor")
                 print("The gaurds bring you back to the cell")
                 Gamerule_StartIntro1 = 1
             if Path == 2:
@@ -444,7 +480,7 @@ if Gamerule_PlayGame == 1:
                 print()
                 Gamerule_OutsideDoor1 = 1
 
-        #VENT WALKWAY
+        # VENT WALKWAY
         if Gamerule_OutsideDoor1 == 1:
             print("You crawl inside the hole and you see a long path, the path leads to a dim light")
             print("You see two ways you can go")
@@ -468,40 +504,43 @@ if Gamerule_PlayGame == 1:
             Path = ""
             while Path != "1" and Path != "2" and Path != "3":
                 Path = input("What do you want to do? 1, 2 or 3: ")
-                
-                            #RUN PAST GUARD ENDING (RNG)
-                
+
+                # RUN PAST GUARD ENDING (RNG)
+
             if Path == "1":
                 print()
-                print("You crawl past to the road that you need to cross, you see a rock and a tree you can hide behind")
+                print(
+                    "You crawl past to the road that you need to cross, you see a rock and a tree you can hide behind")
                 Path = ""
                 while Path != "Rock" and Path != "rock" and Path != "Tree" and Path != "tree":
                     Path = input("Do you run to the rock or the tree?: ")
                 if Path == "Rock" or Path == "rock":
-                    RockHide = random.randint(1,5)
-                    if RockHide == 1 :
+                    RockHide = random.randint(1, 5)
+                    if RockHide == 1:
                         print("You manage to cross the road and hide behind the rocks until the gaurds pass")
                     else:
-                        print("The guards spot you as you're running and catch you, they pin you to the ground and bring you back to the cell.")
+                        print(
+                            "The guards spot you as you're running and catch you, they pin you to the ground and bring you back to the cell.")
                         print()
                         Gamerule_StartIntro1 = 1
                 if Path == "Tree" or Path == "tree":
-                    TreeHide = random.randint(1,5)
+                    TreeHide = random.randint(1, 5)
                     if TreeHide == 5 or TreeHide == 4:
                         print("You manage to cross the road and hide behind the tree until the gaurds pass")
                         print()
                     else:
-                        print("The guards spot you as you're running and catch you, they pin you to the ground and bring you back to the cell.")
+                        print(
+                            "The guards spot you as you're running and catch you, they pin you to the ground and bring you back to the cell.")
                         print()
                         Gamerule_StartIntro1 = 1
-                        
-                        #Stealth Escape
-                        
+
+                        # Stealth Escape
+
                 if Path == "2":
                     Gamerule_Stealth = 1
-                
-                #Hide in bushes get caught
-                
+
+                # Hide in bushes get caught
+
             if Path == "3":
                 print()
                 print("You hide in nearby bushes but the one of the gaurds stops walking and looks around")
@@ -509,8 +548,8 @@ if Gamerule_PlayGame == 1:
                 print()
                 Gamerule_StartIntro1 = 1
 
-                                #STEALTH ENDING
-                        
+                # STEALTH ENDING
+
         if Gamerule_Stealth == 1:
             if Path == "2":
                 print()
@@ -534,16 +573,16 @@ if Gamerule_PlayGame == 1:
                     Lever4 = input("Pull lever 4? 1 or 0: ")
                     Lever5 = input("Pull lever 5? 1 or 0: ")
                     print()
-                    if not(Lever1 != "1" or Lever2 != "0" or Lever3 != "1" or Lever4 != "1" or Lever5 != "0"):
+                    if not (Lever1 != "1" or Lever2 != "0" or Lever3 != "1" or Lever4 != "1" or Lever5 != "0"):
                         print("WRONG TRY AGAIN")
                 print("Ok fini")
-                #Hide in bushes get caught
-
+                # Hide in bushes get caught
 
         if Gamerule_FallBackSpawn == 1:
             print("You walk down the corridor seeing lit lights not paying attention to where you are going.")
             print("You see the corridor open up to the outside world and run towards it as fast as you can")
-            print("As you arent paying attention to the ground you fall into a hole back into the dungeon where you started")
+            print(
+                "As you arent paying attention to the ground you fall into a hole back into the dungeon where you started")
             NegativeHP = random.randint(3, 7)
             print()
             print("You have lost some HP")
@@ -551,4 +590,3 @@ if Gamerule_PlayGame == 1:
             HP = (HP - NegativeHP)
             print("You now have " + str(HP) + " HP")
             Gamerule_StartIntro1 = 1
-            
