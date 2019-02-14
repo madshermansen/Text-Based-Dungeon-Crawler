@@ -144,6 +144,7 @@ if Gamerule_PlayGame == 1:
 
         # Start Game
         if Gamerule_PlayGame == 1:
+            DisplayIntroduction()
             print()
             print("1: You stand up, you see that the wall is old and has a large crack running through it.")
             print("2: You also see that the door is slightly ajar and could be pushed open")
