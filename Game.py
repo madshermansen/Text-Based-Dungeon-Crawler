@@ -88,6 +88,7 @@ Threats = (
  "You are'nt invited to my birthday party anymore!", "Go sit on a pinecone", "Who's this clown", ])
 Attacks = (["Slice", "Stab", "Pummel", "Riposte"])
 MeleeAttacks = (["Punch", "Kick", "Headbutt", "Throw rock"])
+RNGBeastAttacks = (["Punch", "Swings at", "Headbutts", "Stomps on"])
 GoblinAttacks = (["hits", "throws a rock at", "spits on", "jumps on your head and smacks"])
 NumbersCode = (["1", "2"])
 
@@ -110,7 +111,7 @@ if Gamerule_PlayGame == 1:
     while playagain == "yes" or playagain == "y":
         # functions
         Count = 0
-        HP = 20
+        HP = 400
         NegativeHP = random.randint(1, 2)
         GoblinHP = 6
         ChildGoblinHP = 4
@@ -123,6 +124,8 @@ if Gamerule_PlayGame == 1:
         MazeFinish = 0
         AnswerKey = "0"
         Dice = 0
+        RNGBeastHP = 200
+        Weapon = "Placeholder weapon"
         # Gamerule Functions
         Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
@@ -144,7 +147,6 @@ if Gamerule_PlayGame == 1:
 
         # Start Game
         if Gamerule_PlayGame == 1:
-            DisplayIntroduction()
             print()
             print("1: You stand up, you see that the wall is old and has a large crack running through it.")
             print("2: You also see that the door is slightly ajar and could be pushed open")
@@ -409,13 +411,25 @@ if Gamerule_PlayGame == 1:
                 Dice = input("Roll the dice, y or n?: ")
             if Dice == "yes" or Dice ==  "y":
                 Dice = random.randint(1, 7)
-                if Dice == 7:
+                if Dice <= 7:
                     print()
                     print("You roll a 7, a hidden door reveals itself and you walk in")
                     Gamerule_RNGEnding2 = 1
                 else:
+                    Gamerule_Start_MazeDoor2 = 1
                     print()
                     print("Your rolled a " + str(Dice) + ". Nothing happened.")
+                    print("You decide to walk back to the door with a lever")
+                    print()
+                    print("You pull the lever causing the door to slowly open.")
+                    print("In front of you there are three doors")
+                    print("On the wall there is some writing")
+                    print()
+                    print("THE ESCAPE YOU SEEK WILL BE FOUND")
+                    print("SOME OF THE DOORS YOU PICK WILL GET")
+                    print("YOU HONE SAFE AND SOUND")
+                    print()
+
             if Dice == "no" or Dice == "n":
                 Gamerule_Start_MazeDoor2 = 1
                 print("You walk back into the corridor and pull the leaver causing the door to slowly open")
@@ -426,7 +440,53 @@ if Gamerule_PlayGame == 1:
                 print("SOME OF THE DOORS YOU PICK WILL GET")
                 print("YOU HONE SAFE AND SOUND")
                 print()
+                
+        if Gamerule_RNGEnding2 == 1:
+            print("You walk into the hidden room where you see 3 weapons on the floor")
+            print("1: A sword that is nicely cut around the edges")
+            print("2: An axe that glows of power")
+            print("3: A Spear with a shining blue tip")
+            Path = ""
+            while Path != "1" and Path != "2" and Path != "3":
+                Path = input("Which weapon do you pick up?: ")
+            if Path == "1":
+                Weapon = "Sword"
+                Attacks = (["Slice", "Stab", "Pummel", "Riposte"])
+            elif Path == "2":
+                Weapon = "Axe"
+                Attacks = (["Bash", "Slice", "Swing", "Bludgeon"])
+            elif Path == "3":
+                Weapon = "Flail mace"
+                Attacks = (["Swing", "Spin", "Whip"])
+            print("You pick up the " + Weapon + " and feel")
+            print("a soaring power running through your body")
+            print("You see a door and you walk in.")
+            print()
+            while RNGBeastHP > 0:
+                print()
+                print("The beast says " + random.choice(Threats))
+                RandomGoblinDamage = random.randint(3, 8)
+                print("The beast " + random.choice(RNGBeastAttacks) + " you for " + str(RandomGoblinDamage) + " HP")
+                HP = HP - RandomGoblinDamage
+                print()
+                print("You now have " + str(HP) + " HP")
+                print()
+                print(Attacks)
+                print()
+                MeleeAttack = ""
+                while not(MeleeAttack in Attacks):
+                    MeleeAttack = input("What attack do you want to use: ")
+                RandomDamage = random.randint(48, 93)
+                print("You used " + MeleeAttack + " and did " + str(RandomDamage))
+                RNGBeastHP = RNGBeastHP - RandomDamage
+                print("The beast now has " + str(RNGBeastHP) + " HP left")
+                print()
+                
+            
 
+            
+    
+                
 
         if Gamerule_Start_MazeDoor2 == 1:
             Count = 0
