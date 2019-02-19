@@ -111,7 +111,7 @@ if Gamerule_PlayGame == 1:
     while playagain == "yes" or playagain == "y":
         # functions
         Count = 0
-        HP = 400
+        HP = 20
         NegativeHP = random.randint(1, 2)
         GoblinHP = 6
         ChildGoblinHP = 4
@@ -127,7 +127,7 @@ if Gamerule_PlayGame == 1:
         RNGBeastHP = 200
         Weapon = "Placeholder weapon"
         # Gamerule Functions
-        Gamerule_PlayGame = 0
+        Gamerule_PlayGame = 1
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
         Gamerule_KeyADoor = 0
@@ -141,7 +141,7 @@ if Gamerule_PlayGame == 1:
         Gamerule_Stealth = 0
         Gamerule_FallBackSpawn = 0
         Gamerule_MagicDoor = 0
-        Gamerule_RNGEnding = 1
+        Gamerule_RNGEnding = 0
         Gamerule_RNGEnding2 = 0
         Gamerule_TeleportCube = 0
 
@@ -269,6 +269,58 @@ if Gamerule_PlayGame == 1:
 
             # Different doors, Key, Maze, Find Key.
 
+        if Gamerule_KeyFinder == 1:
+            print("You walk into the room where the door closes behind you")
+            print("You walk next to the chest hesitating to open it")
+            ChestRandomKey = random.randint(1, 4)
+            if ChestRandomKey == 1:
+                print()
+                print("You open the chest after waiting a while and find a key")
+                print("You look at the key and wonder what to do with it")
+                KeyB = 1
+            else:
+                print()
+                print("You open the chest after waiting a while and find a key")
+                print("You look at the key and wonder what to do with it")
+                KeyA = 1
+            print("You turn to your left and see a door that needs a key to open")
+            KeyBDoor = 0
+            while KeyBDoor != "Yes" and KeyBDoor != "No" and KeyBDoor != "yes" and KeyBDoor != "no":
+                KeyBDoor = input("Do you try opening the door?: ")
+            if KeyBDoor == "Yes" or KeyBDoor == "yes":
+                if KeyB == 1:
+                    print("The key slides in and you open the door with ease and you walk in")
+                    Gamerule_MagicDoor = 1
+                else:
+                    print("You try putting the key in but it doesnt fit")
+                    print("You decide to walk back")
+                    print()
+                    print("1: You see one Giant door with a lever to open it")
+                    print("2: And a seccond room that is locked and needs a key to open")
+                    Path = ""
+                    while Path != "1" and Path != "2":
+                        Path = input("Which door do you want to open? 1 or 2: ")
+                    print()
+                    if Path == "2":
+                        Gamerule_KeyADoor = 1
+                    if Path == "1":
+                        Gamerule_Start_MazeDoor = 1
+
+
+            if KeyBDoor == "No" or KeyBDoor == "no":
+                print("You decide to walk back")
+                print()
+                print("1: You see one Giant door with a lever to open it")
+                print("2: And a third room that is locked and needs a key to open")
+                Path = ""
+                while Path != "1" and Path != "2":
+                    Path = input("Which door do you want to open? 1 or 2: ")
+                print()
+                if Path == "2":
+                    Gamerule_KeyADoor = 1
+                if Path == "1":
+                    Gamerule_Start_MazeDoor = 1
+
         if Gamerule_KeyADoor == 1:
             print("1")
             if KeyA == 1:
@@ -300,57 +352,6 @@ if Gamerule_PlayGame == 1:
                 if Path == "3":
                     Gamerule_Start_MazeDoor = 1
                     Gamerule_KeyADoor = 0
-
-        if Gamerule_KeyFinder == 1:
-            print("You walk into the room where the door closes behind you")
-            print("You walk next to the chest hesitating to open it")
-            ChestRandomKey = random.randint(1, 4)
-            if ChestRandomKey == 1:
-                print()
-                print("You open the chest after waiting a while and find a key")
-                print("You look at the key and wonder what to do with it")
-                KeyB = 1
-            else:
-                print()
-                print("You open the chest after waiting a while and find a key")
-                print("You look at the key and wonder what to do with it")
-                KeyA = 1
-            print("You turn to your left and see a door that needs a key to open")
-            KeyBDoor = 0
-            while KeyBDoor != "Yes" and KeyBDoor != "No" and KeyBDoor != "yes" and KeyBDoor != "no":
-                KeyBDoor = input("Do you try opening the door?: ")
-            if KeyBDoor == "Yes" or KeyBDoor == "yes":
-                if KeyB == 1:
-                    print("The key slides in and you open the door with ease and you walk in")
-                    Gamerule_MagicDoor = 1
-                else:
-                    print("You try putting the key in but it doesnt fit")
-                    print("You decide to walk back")
-                    print()
-                    print("1: You see one Giant door with a lever to open it")
-                    print("2: And a third room that is locked and needs a key to open")
-                    Path = ""
-                    while Path != "1" and Path != "2":
-                        Path = input("Which door do you want to open? 1 or 2: ")
-                    print()
-                    if Path == "1":
-                        Gamerule_KeyADoor = 1
-                    if Path == "2":
-                        Gamerule_Start_MazeDoor = 1
-
-            if KeyBDoor == "No" or KeyBDoor == "no":
-                print("You decide to walk back")
-                print()
-                print("1: You see one Giant door with a lever to open it")
-                print("2: And a third room that is locked and needs a key to open")
-                Path = ""
-                while Path != "1" and Path != "2":
-                    Path = input("Which door do you want to open? 1 or 2: ")
-                print()
-                if Path == "2":
-                    Gamerule_KeyADoor = 1
-                if Path == "1":
-                    Gamerule_Start_MazeDoor = 1
 
         if Gamerule_MagicDoor == 1:
             print()
@@ -411,7 +412,7 @@ if Gamerule_PlayGame == 1:
                 Dice = input("Roll the dice, y or n?: ")
             if Dice == "yes" or Dice ==  "y":
                 Dice = random.randint(1, 7)
-                if Dice <= 7:
+                if Dice == 7:
                     print()
                     print("You roll a 7, a hidden door reveals itself and you walk in")
                     Gamerule_RNGEnding2 = 1
@@ -465,7 +466,7 @@ if Gamerule_PlayGame == 1:
             while RNGBeastHP > 0:
                 print()
                 print("The beast says " + random.choice(Threats))
-                RandomGoblinDamage = random.randint(3, 8)
+                RandomGoblinDamage = random.randint(2, 8)
                 print("The beast " + random.choice(RNGBeastAttacks) + " you for " + str(RandomGoblinDamage) + " HP")
                 HP = HP - RandomGoblinDamage
                 print()
@@ -490,7 +491,7 @@ if Gamerule_PlayGame == 1:
 
         if Gamerule_Start_MazeDoor2 == 1:
             Count = 0
-            while Count != 14:
+            while Count != 13:
                 path = "0"
                 if Count == 0:
                     AnswerKey = "1"
