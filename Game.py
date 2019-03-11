@@ -144,6 +144,7 @@ if Gamerule_PlayGame == 1:
         Gamerule_RNGEnding = 0
         Gamerule_RNGEnding2 = 0
         Gamerule_TeleportCube = 0
+        Gamerule_TeleportOrb = 0
 
         # Start Game
         if Gamerule_PlayGame == 1:
@@ -482,6 +483,7 @@ if Gamerule_PlayGame == 1:
                 RNGBeastHP = RNGBeastHP - RandomDamage
                 print("The beast now has " + str(RNGBeastHP) + " HP left")
                 print()
+            print("You defeat the beast and some placeholder text comes up")
                 
             
 
@@ -532,7 +534,21 @@ if Gamerule_PlayGame == 1:
                 elif Count == 12:
                     AnswerKey = "2"
                     Count = StartMaze()
-            print("You walk through the door and the maze is over. You see a blue shining orb in a glass cage")
+            print("You walk through the door and the maze is over.")
+            print("1: You see a blue shining orb in a glass cage")
+            print("2: You see a gate that you can slide open with a pulley system")
+            print("3: You see a door that is made from shiny black metals")
+            Path = ""
+            while Path != "1" and Path != "2" and Path != "3":
+                Path = input("Which path do you want to take")
+            if Path == "1":
+                print("You break the cage open and take the orb")
+                print("You feel immense power flowing through your body")
+                print("and suddenly, you vanish")
+                Gamerule_TeleportOrb = 1
+            if Path == "2":
+                print("CC")
+
 
         if Gamerule_CorridorDamage == 1:
             NegativeHP = random.randint(2, 5)
