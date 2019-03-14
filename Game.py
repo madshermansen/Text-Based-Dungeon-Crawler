@@ -125,9 +125,11 @@ if Gamerule_PlayGame == 1:
         AnswerKey = "0"
         Dice = 0
         RNGBeastHP = 200
+        PreDragonHP = 100
         Weapon = "Placeholder weapon"
         # Gamerule Functions
-        Gamerule_PlayGame = 1
+        Gamerule_DragonFight = 1
+        Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
         Gamerule_KeyADoor = 0
@@ -484,12 +486,6 @@ if Gamerule_PlayGame == 1:
                 print("The beast now has " + str(RNGBeastHP) + " HP left")
                 print()
             print("You defeat the beast and some placeholder text comes up")
-                
-            
-
-            
-    
-                
 
         if Gamerule_Start_MazeDoor2 == 1:
             Count = 0
@@ -547,7 +543,36 @@ if Gamerule_PlayGame == 1:
                 print("and suddenly, you vanish")
                 Gamerule_TeleportOrb = 1
             if Path == "2":
-                print("CC")
+                print("You pull on the rope slowly opening the door")
+            if Path == "3":
+                print("You open the door slowly and walk inside, The door slams shut when you walk in")
+                Gamerule_DragonFight = 1
+
+        if Gamerule_DragonFight == 1:
+            print("When walking into the room you see a spear with a green tip on the end")
+            print("You pick it up and as you do a beast comes out from the wall")
+            Weapon = "Spear"
+            Attacks = (["Thrust", "Throw", "Swing", "Stab"])
+            while PreDragonHP > 0:
+                print()
+                print("The beast says " + random.choice(Threats))
+                RandomGoblinDamage = random.randint(2, 5)
+                print("The beast " + random.choice(RNGBeastAttacks) + " you for " + str(RandomGoblinDamage) + " HP")
+                HP = HP - RandomGoblinDamage
+                print()
+                print("You now have " + str(HP) + " HP")
+                print()
+                print(Attacks)
+                print()
+                MeleeAttack = ""
+                while not(MeleeAttack in Attacks):
+                    MeleeAttack = input("What attack do you want to use: ")
+                RandomDamage = random.randint(48, 93)
+                print("You used " + MeleeAttack + " and did " + str(RandomDamage))
+                PreDragonHP = PreDragonHP - RandomDamage
+                print("The beast now has " + str(PreDragonHP) + " HP left")
+                print()
+            print("You defeat the beast and a door opens, you walk into the room and hear a giant cracking sound.")
 
 
         if Gamerule_CorridorDamage == 1:
