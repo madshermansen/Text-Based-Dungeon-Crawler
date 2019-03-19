@@ -86,6 +86,7 @@ Threats = (
 ["Ill beat you silly!", "You're just a mere mortal! Get out of my sight", "What if i turn you into a toaster!",
  "I'll beat you in chess!", "You are a rump-faced ape!", "Im not insulting you, im describing you",
  "You are'nt invited to my birthday party anymore!", "Go sit on a pinecone", "Who's this clown", ])
+DragonAttacks = (["Spits a ball of fire at", "Swipes its claws at", "Blows fire at", "Flies up and drops down on"])
 Attacks = (["Slice", "Stab", "Pummel", "Riposte"])
 MeleeAttacks = (["Punch", "Kick", "Headbutt", "Throw rock"])
 RNGBeastAttacks = (["Punch", "Swings at", "Headbutts", "Stomps on"])
@@ -109,7 +110,8 @@ Gamerule_PlayGame = 1
 if Gamerule_PlayGame == 1:
     playagain = "yes"
     while playagain == "yes" or playagain == "y":
-        # functions
+        # Variables
+        DragonHP = 50000
         Count = 0
         HP = 20
         NegativeHP = random.randint(1, 2)
@@ -126,9 +128,11 @@ if Gamerule_PlayGame == 1:
         Dice = 0
         RNGBeastHP = 200
         PreDragonHP = 100
+        RandomDragonDamage = 0
         Weapon = "Placeholder weapon"
         # Gamerule Functions
-        Gamerule_DragonFight = 1
+        Gamerule_PreDragonFight = 1
+        Gamerule_DragonFight = 0
         Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
@@ -548,12 +552,23 @@ if Gamerule_PlayGame == 1:
                 print("You open the door slowly and walk inside, The door slams shut when you walk in")
                 Gamerule_DragonFight = 1
 
-        if Gamerule_DragonFight == 1:
+        if Gamerule_PreDragonFight == 1:
             print("When walking into the room you see a spear with a green tip on the end")
             print("You pick it up and as you do a beast comes out from the wall")
             Weapon = "Spear"
             Attacks = (["Thrust", "Throw", "Swing", "Stab"])
-            while PreDragonHP > 0:
+            while PreDragonHP > 0 and HP > 0:
+                print()
+                print(Attacks)
+                print()
+                MeleeAttack = ""
+                while not(MeleeAttack in Attacks):
+                    MeleeAttack = input("What attack do you want to use: ")
+                RandomDamage = random.randint(15, 60)
+                print("You used " + MeleeAttack + " and did " + str(RandomDamage))
+                PreDragonHP = PreDragonHP - RandomDamage
+                print("The beast now has " + str(PreDragonHP) + " HP left")
+                print()
                 print()
                 print("The beast says " + random.choice(Threats))
                 RandomGoblinDamage = random.randint(2, 5)
@@ -561,18 +576,51 @@ if Gamerule_PlayGame == 1:
                 HP = HP - RandomGoblinDamage
                 print()
                 print("You now have " + str(HP) + " HP")
+            if PreDragonHP <= 0 and HP > 0:
                 print()
-                print(Attacks)
+                print("You pick up and drink a potion healing you to full HP")
+                HP = 20
                 print()
-                MeleeAttack = ""
-                while not(MeleeAttack in Attacks):
-                    MeleeAttack = input("What attack do you want to use: ")
-                RandomDamage = random.randint(48, 93)
-                print("You used " + MeleeAttack + " and did " + str(RandomDamage))
-                PreDragonHP = PreDragonHP - RandomDamage
-                print("The beast now has " + str(PreDragonHP) + " HP left")
-                print()
-            print("You defeat the beast and a door opens, you walk into the room and hear a giant cracking sound.")
+                print("You defeat the beast and a door opens, you walk into the room and hear a giant cracking sound.")
+                print("A giant dragon breaks through the roof, You feel immense power in the room")
+                Gamerule_DragonFight = 1
+            elif HP <= 0:
+                print("You died")
+
+        if Gamerule_DragonFight == 1:
+            print("The dragon blasts you with fire, you try running away but it is blocking the exit")
+            print("It shoots a fireball at you breaking open a wall which you run through")
+            print("You see shiny green armor with a note beside it")
+            print()
+            print("Experiment 46 - Dragon Armor and utility")
+            print("Armor specially designed for fighting dragons")
+            print("Highly resistant to fire and scale protection")
+            print("HP Boost potion")
+            print("Dragon and Fire resistance potion")
+            print()
+            print("You pick up and put on the armor. You look for an escape but there is none")
+            print("After picking up the armor you decide to drink the potions")
+            print("Your heart starts beating faster and feel a surge of blood flow through your body")
+            print()
+            HP = 100
+            print("Your current (boosted) HP is " + HP)
+            print()
+            print("You have to fight the dragon or die...")
+            Path = ""
+            while Path != "yes" and Path != "Yes" and Path != "y" and Path != "Y" and Path != "no" and Path != "No" and Path != "n" and Path != "N":
+                Path = input("Do you want to fight?")
+                if Path == "Yes" or Path == "yes" or Path == "y" or Path == "Y":
+                    print("You run out into the opening ready to fight the dragon")
+                    while DragonHP > 0 and HP > 0:
+                        RandomDragonDamage = random.randint(13, 30)
+                        RandomDamage = 0
+                    
+                    
+                elif Path == "no" or Path == "No" or Path == "N" or Path == "n":
+                    print("You decide to live out your life in the cave with no food or water")
+                    print("After a few days you die with no one around you...")
+                    
+
 
 
         if Gamerule_CorridorDamage == 1:
