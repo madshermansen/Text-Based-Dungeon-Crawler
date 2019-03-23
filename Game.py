@@ -39,7 +39,7 @@ def choosepath():
 # ---------------------------------------------------------------#
 
 def StartMaze():
-    print("Room " + str(Count+1))
+    print("Room " + str(Count + 1))
     print()
     print("1: Left")
     print("2: Forward")
@@ -83,9 +83,9 @@ DrinkPotion = ""
 
 
 Threats = (
-["Ill beat you silly!", "You're just a mere mortal! Get out of my sight", "What if i turn you into a toaster!",
- "I'll beat you in chess!", "You are a rump-faced ape!", "Im not insulting you, im describing you",
- "You are'nt invited to my birthday party anymore!", "Go sit on a pinecone", "Who's this clown", ])
+    ["Ill beat you silly!", "You're just a mere mortal! Get out of my sight", "What if i turn you into a toaster!",
+     "I'll beat you in chess!", "You are a rump-faced ape!", "Im not insulting you, im describing you",
+     "You are'nt invited to my birthday party anymore!", "Go sit on a pinecone", "Who's this clown", ])
 DragonAttacks = (["Spits a ball of fire at", "Swipes its claws at", "Blows fire at", "Flies up and drops down on"])
 Attacks = (["Slice", "Stab", "Pummel", "Riposte"])
 MeleeAttacks = (["Punch", "Kick", "Headbutt", "Throw rock"])
@@ -313,7 +313,6 @@ if Gamerule_PlayGame == 1:
                     if Path == "1":
                         Gamerule_Start_MazeDoor = 1
 
-
             if KeyBDoor == "No" or KeyBDoor == "no":
                 print("You decide to walk back")
                 print()
@@ -415,9 +414,9 @@ if Gamerule_PlayGame == 1:
         if Gamerule_RNGEnding == 1:
             print()
             print("There is a seven sided dice in the room. Do you roll it?")
-            while Dice != "yes" and Dice !=  "y" and Dice !=  "no" and Dice !=  "n":
+            while Dice != "yes" and Dice != "y" and Dice != "no" and Dice != "n":
                 Dice = input("Roll the dice, y or n?: ")
-            if Dice == "yes" or Dice ==  "y":
+            if Dice == "yes" or Dice == "y":
                 Dice = random.randint(1, 7)
                 if Dice == 7:
                     print()
@@ -448,7 +447,7 @@ if Gamerule_PlayGame == 1:
                 print("SOME OF THE DOORS YOU PICK WILL GET")
                 print("YOU HONE SAFE AND SOUND")
                 print()
-                
+
         if Gamerule_RNGEnding2 == 1:
             print("You walk into the hidden room where you see 3 weapons on the floor")
             print("1: A sword that is nicely cut around the edges")
@@ -482,7 +481,7 @@ if Gamerule_PlayGame == 1:
                 print(Attacks)
                 print()
                 MeleeAttack = ""
-                while not(MeleeAttack in Attacks):
+                while not (MeleeAttack in Attacks):
                     MeleeAttack = input("What attack do you want to use: ")
                 RandomDamage = random.randint(48, 93)
                 print("You used " + MeleeAttack + " and did " + str(RandomDamage))
@@ -562,7 +561,7 @@ if Gamerule_PlayGame == 1:
                 print(Attacks)
                 print()
                 MeleeAttack = ""
-                while not(MeleeAttack in Attacks):
+                while not (MeleeAttack in Attacks):
                     MeleeAttack = input("What attack do you want to use: ")
                 RandomDamage = random.randint(15, 60)
                 print("You used " + MeleeAttack + " and did " + str(RandomDamage))
@@ -603,25 +602,35 @@ if Gamerule_PlayGame == 1:
             print("Your heart starts beating faster and feel a surge of blood flow through your body")
             print()
             HP = 100
-            print("Your current (boosted) HP is " + HP)
+            print("Your current (boosted) HP is " + str(HP))
             print()
             print("You have to fight the dragon or die...")
             Path = ""
             while Path != "yes" and Path != "Yes" and Path != "y" and Path != "Y" and Path != "no" and Path != "No" and Path != "n" and Path != "N":
-                Path = input("Do you want to fight?")
+                Path = input("Do you want to fight?: ")
                 if Path == "Yes" or Path == "yes" or Path == "y" or Path == "Y":
                     print("You run out into the opening ready to fight the dragon")
                     while DragonHP > 0 and HP > 0:
+                        print("")
+                        print(Attacks)
+                        print("")
+                        MeleeAttack = ""
+                        while not(MeleeAttack in Attacks):
+                            MeleeAttack = input("What attack do you want to use: ")
+                            RandomDamage = random.randint(7000, 21000)
+                        DragonHP = DragonHP - RandomDamage
+                        print("You used " + MeleeAttack + "and did " + str(RandomDamage) + " damage")
+                        print("The dragon now has " + str(DragonHP) + "HP")
                         RandomDragonDamage = random.randint(13, 30)
-                        RandomDamage = 0
-                    
-                    
+                        print("The dragon " + random.choice(DragonAttacks) + " you for " + str(RandomDragonDamage) + " HP")
+                        HP = HP - RandomDragonDamage
+                        print("You now have " + str(HP) + " HP")
+
+
+
                 elif Path == "no" or Path == "No" or Path == "N" or Path == "n":
                     print("You decide to live out your life in the cave with no food or water")
                     print("After a few days you die with no one around you...")
-                    
-
-
 
         if Gamerule_CorridorDamage == 1:
             NegativeHP = random.randint(2, 5)
