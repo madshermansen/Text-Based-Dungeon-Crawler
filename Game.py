@@ -131,9 +131,9 @@ if Gamerule_PlayGame == 1:
         RandomDragonDamage = 0
         Weapon = "Placeholder weapon"
         # Gamerule Functions
-        Gamerule_PreDragonFight = 1
+        Gamerule_PreDragonFight = 0
         Gamerule_DragonFight = 0
-        Gamerule_PlayGame = 0
+        Gamerule_PlayGame = 1
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
         Gamerule_KeyADoor = 0
@@ -621,10 +621,15 @@ if Gamerule_PlayGame == 1:
                         DragonHP = DragonHP - RandomDamage
                         print("You used " + MeleeAttack + "and did " + str(RandomDamage) + " damage")
                         print("The dragon now has " + str(DragonHP) + "HP")
-                        RandomDragonDamage = random.randint(13, 30)
-                        print("The dragon " + random.choice(DragonAttacks) + " you for " + str(RandomDragonDamage) + " HP")
-                        HP = HP - RandomDragonDamage
+                        if DragonHP > 0 and HP > 0:
+                            RandomDragonDamage = random.randint(13, 30)
+                            print("The dragon " + random.choice(DragonAttacks) + " you for " + str(RandomDragonDamage) + " HP")
+                            HP = HP - RandomDragonDamage
                         print("You now have " + str(HP) + " HP")
+                    if DragonHP <= 0:
+                        print("You won! Good job!")
+                    elif HP <= 0:
+                        print("You lost! Too bad")
 
 
 
@@ -778,3 +783,6 @@ if Gamerule_PlayGame == 1:
             HP = (HP - NegativeHP)
             print("You now have " + str(HP) + " HP")
             Gamerule_StartIntro1 = 1
+        if choice == "2":
+            print("pi")
+
