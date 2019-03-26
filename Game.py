@@ -783,6 +783,8 @@ if Gamerule_PlayGame == 1:
             HP = (HP - NegativeHP)
             print("You now have " + str(HP) + " HP")
             Gamerule_StartIntro1 = 1
+
         if choice == "2":
-            print("pi")
+            print("You push the door open and slowly walk out, you see five different rooms")
+            print("1: ")
 
