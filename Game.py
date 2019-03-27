@@ -786,5 +786,12 @@ if Gamerule_PlayGame == 1:
 
         if choice == "2":
             print("You push the door open and slowly walk out, you see five different rooms")
-            print("1: ")
+            print("1: A small room with a slanted door.")
+            print("2: A basic prison cell")
+            print("3: A basic prison cell")
+            print("4: A basic prison cell")
+            print("5: A more luxiorius room with paintings on the wall")
+            Path = ""
+            while Path != "1" and Path != "2" and Path != "3" and Path != "4" and Path != "5":
+                Path = input("Which path do you want to take?: ")
 
