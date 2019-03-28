@@ -92,6 +92,9 @@ MeleeAttacks = (["Punch", "Kick", "Headbutt", "Throw rock"])
 RNGBeastAttacks = (["Punch", "Swings at", "Headbutts", "Stomps on"])
 GoblinAttacks = (["hits", "throws a rock at", "spits on", "jumps on your head and smacks"])
 NumbersCode = (["1", "2"])
+NormalWeaponList = ["Bow", "Shiv", "Iron Sword"]
+NormalWeaponDamage = [[10, 30],[6, 19],[12, 32]]
+NormalWeaponAttacks = [["Shoot","Throw arrow"],["Stab","Slice","Ninjutsu kunai attack"],["Slice","Stab","Pummel","Riposte"]]
 
 ##############################################################
 
@@ -186,6 +189,45 @@ if Gamerule_PlayGame == 1:
                         Gamerule_StartIntro1 = 1
 
                     # Player decides to go back into main room
+            if choice == "2":
+                print("You push the door open and slowly walk out, you see five different rooms")
+                print("1: A small room with a slanted door.")
+                print("2: A basic prison cell")
+                print("3: A basic prison cell")
+                print("4: A basic prison cell")
+                print("5: A more luxiorius room with paintings on the wall")
+                Path = ""
+                while Path != "1" and Path != "2" and Path != "3" and Path != "4" and Path != "5":
+                    Path = input("Which path do you want to take?: ")
+                if Path == "1":
+                    Weapon = NormalWeaponList[0]
+                    print("You find a bow and pick it up")
+                    print("You also see arrows on the ground and pick them up as well")
+                if Path == "2":
+                    WallBreak = random.randint(1, 2)
+                    if WallBreak == 1:
+                        print("You don't find anything and walk back out")
+                    if WallBreak == 2:
+                        print("You see a door leading to a room and decide to walk in")
+                        Gamerule_Start_MazeDoor2 = 1
+                        print("You open the door and you are at the start of a maze")
+                if Path == "3":
+                    print("You search the room and find a shiv hidden in the corner")
+                    print("You pick it up and put it into your pocket")
+                    Weapon = NormalWeaponList[1]
+                if Path == "4":
+                    print("You look around the room and don't find anything")
+                if Path == "5":
+                    print("You find a Iron sword hung on the wall along with a potion")
+                    WallBreak = ""
+                    while WallBreak != "yes" and WallBreak != "Yes" and WallBreak != "no" and WallBreak != "No" and WallBreak != "y" and WallBreak != "Y" and WallBreak != "n" and WallBreak != "N":
+                        WallBreak = input("Do you want to drink the potion?: ")
+                    if WallBreak == "yes" or WallBreak == "Y" or WallBreak == "Yes" or WallBreak == "yes":
+                        print("You drink the potion and feel bad")
+                        HP = HP - 3
+                        print("You lost 3 HP Drinking the potion, you now have " + str(HP))
+                    else:
+                        print("You pick up the sword and leave")
 
             if Gamerule_StartIntro1 == 1:
                 print()
@@ -783,15 +825,3 @@ if Gamerule_PlayGame == 1:
             HP = (HP - NegativeHP)
             print("You now have " + str(HP) + " HP")
             Gamerule_StartIntro1 = 1
-
-        if choice == "2":
-            print("You push the door open and slowly walk out, you see five different rooms")
-            print("1: A small room with a slanted door.")
-            print("2: A basic prison cell")
-            print("3: A basic prison cell")
-            print("4: A basic prison cell")
-            print("5: A more luxiorius room with paintings on the wall")
-            Path = ""
-            while Path != "1" and Path != "2" and Path != "3" and Path != "4" and Path != "5":
-                Path = input("Which path do you want to take?: ")
-
