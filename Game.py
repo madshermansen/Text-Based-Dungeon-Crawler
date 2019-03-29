@@ -120,6 +120,7 @@ if Gamerule_PlayGame == 1:
         NegativeHP = random.randint(1, 2)
         GoblinHP = 6
         ChildGoblinHP = 4
+        FutureKey = 0
         KeyA = 0
         KeyB = 0
         RandomPotionRNG = 0
@@ -154,6 +155,8 @@ if Gamerule_PlayGame == 1:
         Gamerule_RNGEnding2 = 0
         Gamerule_TeleportCube = 0
         Gamerule_TeleportOrb = 0
+        Gamerule_HallwayEscape = 0
+        Gamerule_DPUEnding = 0
 
         # Start Game
         if Gamerule_PlayGame == 1:
@@ -176,45 +179,55 @@ if Gamerule_PlayGame == 1:
                     print("As you walk out of the room you start to feel more refreshed")
                     print("HP +1")
                     HP = HP + 1
-                    Gamerule_StartIntro1 = 1
+                    print("You walk back and decide to go the other way")
+                    choice = "2"
                 else:
                     print("There is a door that leads to stairs going furthur down the dungeon")
                     Enter = input("Do you want to go furthur down? y or n: ")
                     if Enter == "n":
-                        print("You walk back not having achieved anything")
-                        Gamerule_StartIntro1 = 1
+                        print("You walk back and decide to go the other way")
+                        choice = "2"
                     elif Enter == "y":
                         Gamerule_Dungeon = 1
                     else:
-                        Gamerule_StartIntro1 = 1
+                        choice = "2"
+                        print("You walk back and decide to go the other way")
 
                     # Player decides to go back into main room
             if choice == "2":
-                print("You push the door open and slowly walk out, you see five different rooms")
+                print("You push the door open and slowly walk out, you see five different rooms and a small door")
                 print("1: A small room with a slanted door.")
                 print("2: A basic prison cell")
                 print("3: A basic prison cell")
                 print("4: A basic prison cell")
                 print("5: A more luxiorius room with paintings on the wall")
+                print("6: A small door leading somewhere unknown")
                 Path = ""
-                while Path != "1" and Path != "2" and Path != "3" and Path != "4" and Path != "5":
+                while Path != "1" and Path != "2" and Path != "3" and Path != "4" and Path != "5" and Path != "6":
                     Path = input("Which path do you want to take?: ")
                 if Path == "1":
                     Weapon = NormalWeaponList[0]
                     print("You find a bow and pick it up")
                     print("You also see arrows on the ground and pick them up as well")
+                    print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
+                    Gamerule_HallwayEscape = 1
                 if Path == "2":
                     WallBreak = random.randint(1, 2)
                     if WallBreak == 1:
                         print("You don't find anything and walk back out")
+                        print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
+                        Gamerule_HallwayEscape = 1
                     if WallBreak == 2:
                         print("You see a door leading to a room and decide to walk in")
+                        print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
                         Gamerule_Start_MazeDoor2 = 1
                         print("You open the door and you are at the start of a maze")
                 if Path == "3":
                     print("You search the room and find a shiv hidden in the corner")
                     print("You pick it up and put it into your pocket")
                     Weapon = NormalWeaponList[1]
+                    print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
+                    Gamerule_HallwayEscape = 1
                 if Path == "4":
                     print("You look around the room and don't find anything")
                 if Path == "5":
@@ -226,12 +239,54 @@ if Gamerule_PlayGame == 1:
                         print("You drink the potion and feel bad")
                         HP = HP - 3
                         print("You lost 3 HP Drinking the potion, you now have " + str(HP))
+                        print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
+                        Gamerule_HallwayEscape = 1
                     else:
                         print("You pick up the sword and leave")
+                        print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
+                        Gamerule_HallwayEscape = 1
+                if Path == "6":
+                    print("You find a strange looking device and pick it up")
+                    FutureKey = 1
+                    print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
+                    Gamerule_HallwayEscape = 1
 
-            if Gamerule_StartIntro1 == 1:
-                print()
-                print("You walk back from the hollow room not having done anything")
+            if Gamerule_HallwayEscape == 1:
+                print("You walk into a big white room, you see a ")
+                print("1: White door with no handle")
+                print("2: A old wooden door with cracks in it leading to a hallway")
+                Path = ""
+                while Path != "1" and Path != "2":
+                    Path = input("Which path do you want to take?: ")
+                if Path == "1":
+                    if FutureKey == 1:
+                        print("You walk into the room and see a white box")
+                        print("You walk close to the box and the strange artifact starts moving")
+                        print("The artifact flies out of your pocket and sticks to the box")
+                        print("The box slowly disappears and you see a strange looking device")
+                        print("The device has some letters bellow it")
+                        print()
+                        print("DPU")
+                        print()
+                        Path = ""
+                        while Path != "Y" and Path != "y" and Path != "n" and Path != "N":
+                            Path = input("Do you want to touch the device? (Y/N): ")
+                        if Path == "y" or Path == "Y":
+                            print("You touch the device and the screen starts flashing")
+                            Gamerule_DPUEnding = 1
+                        if Path == "N" or Path == "n":
+                            Gamerule_HallwayEscape2 = 1
+                            print("You decide to walk out of the room and take the wooden door")
+                    if FutureKey == 0:
+                        print("You walk into the room and see a white box")
+                        print("You walk closer and nothing happens")
+                        print("You decide to walk out of the room and take the wooden door")
+                        Gamerule_HallwayEscape2 = 1
+                elif Path == "2":
+                    Gamerule_HallwayEscape2 = 1
+                    print("You open the door and walk to another door and open it")
+
+
 
                 # Player chooses to go into the dungeon
 
@@ -258,7 +313,7 @@ if Gamerule_PlayGame == 1:
                     print(MeleeAttacks)
                     print()
                     MeleeAttack = ""
-                    while MeleeAttack != "Punch" and MeleeAttack != "Kick" and MeleeAttack != "Throw rock" and MeleeAttack != "Headbutt":
+                    while not(MeleeAttack in MeleeAttacks):
                         MeleeAttack = input("What attack do you want to do?: ")
                     RandomDamage = random.randint(2, 3)
                     print("You used " + str(MeleeAttack) + " and did " + str(RandomDamage) + " to the goblin")
@@ -428,7 +483,7 @@ if Gamerule_PlayGame == 1:
                 print()
                 if Path == "2":
                     Gamerule_KeyADoor = 1
-                if Path == "1":
+                elif Path == "1":
                     Gamerule_Start_MazeDoor = 1
 
         if Gamerule_Start_MazeDoor == 1:
@@ -575,6 +630,7 @@ if Gamerule_PlayGame == 1:
                 elif Count == 12:
                     AnswerKey = "2"
                     Count = StartMaze()
+
             print("You walk through the door and the maze is over.")
             print("1: You see a blue shining orb in a glass cage")
             print("2: You see a gate that you can slide open with a pulley system")
