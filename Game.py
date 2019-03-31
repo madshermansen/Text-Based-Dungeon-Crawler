@@ -159,7 +159,9 @@ if Gamerule_PlayGame == 1:
         Gamerule_DPUEnding = 0
 
         # Start Game
+
         if Gamerule_PlayGame == 1:
+            DisplayIntroduction()
             print()
             print("1: You stand up, you see that the wall is old and has a large crack running through it.")
             print("2: You also see that the door is slightly ajar and could be pushed open")
@@ -207,6 +209,8 @@ if Gamerule_PlayGame == 1:
                     Path = input("Which path do you want to take?: ")
                 if Path == "1":
                     Weapon = NormalWeaponList[0]
+                    Attacks = NormalWeaponAttacks[0]
+                    Damage = NormalWeaponDamage[0]
                     print("You find a bow and pick it up")
                     print("You also see arrows on the ground and pick them up as well")
                     print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
@@ -226,11 +230,16 @@ if Gamerule_PlayGame == 1:
                     print("You search the room and find a shiv hidden in the corner")
                     print("You pick it up and put it into your pocket")
                     Weapon = NormalWeaponList[1]
+                    Attacks = NormalWeaponAttacks[1]
+                    Damage = NormalWeaponDamage[1]
                     print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
                     Gamerule_HallwayEscape = 1
                 if Path == "4":
                     print("You look around the room and don't find anything")
                 if Path == "5":
+                    Attacks = NormalWeaponAttacks[2]
+                    Weapon = NormalWeaponList[2]
+                    Damage = NormalWeaponDamage[2]
                     print("You find a Iron sword hung on the wall along with a potion")
                     WallBreak = ""
                     while WallBreak != "yes" and WallBreak != "Yes" and WallBreak != "no" and WallBreak != "No" and WallBreak != "y" and WallBreak != "Y" and WallBreak != "n" and WallBreak != "N":
@@ -284,7 +293,25 @@ if Gamerule_PlayGame == 1:
                         Gamerule_HallwayEscape2 = 1
                 elif Path == "2":
                     Gamerule_HallwayEscape2 = 1
-                    print("You open the door and walk to another door and open it")
+                    print("You open the door and walk along the hallway to another door and open it")
+
+            if Gamerule_DPUEnding == 1:
+                print("It flashes three images")
+                print("")
+                print("DIGITAL")
+                print("PROCESSING")
+                print("UNIT")
+                print("")
+                print("The room starts disappearing slowly along with the rest of the dungeon")
+                print("You are standing in a empty area with nothing")
+                print("You float in the air and stand still")
+                print("Slowly a man with a black cloak walks up to you")
+                print("")
+                print("based")
+                print("")
+                print("The end FLACEHOLDER BTW")
+
+            if Gamerule_HallwayEscape2 == 1
 
 
 
