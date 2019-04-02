@@ -91,7 +91,7 @@ Attacks = (["Slice", "Stab", "Pummel", "Riposte"])
 MeleeAttacks = (["Punch", "Kick", "Headbutt", "Throw rock"])
 RNGBeastAttacks = (["Punch", "Swings at", "Headbutts", "Stomps on"])
 GoblinAttacks = (["hits", "throws a rock at", "spits on", "jumps on your head and smacks"])
-NumbersCode = (["1", "2"])
+NumbersCode = (["1", "2", "3", "4", "5", "6", "7", "8", "9"])
 NormalWeaponList = ["Bow", "Shiv", "Iron Sword"]
 NormalWeaponDamage = [[10, 30],[6, 19],[12, 32]]
 NormalWeaponAttacks = [["Shoot","Throw arrow"],["Stab","Slice","Ninjutsu kunai attack"],["Slice","Stab","Pummel","Riposte"]]
@@ -133,11 +133,16 @@ if Gamerule_PlayGame == 1:
         RNGBeastHP = 200
         PreDragonHP = 100
         RandomDragonDamage = 0
+        Lever1 = 10
+        Lever2 = 10
+        Lever3 = 10
+        Lever4 = 10
+        Lever5 = 10
         Weapon = "Placeholder weapon"
         # Gamerule Functions
         Gamerule_PreDragonFight = 0
         Gamerule_DragonFight = 0
-        Gamerule_PlayGame = 1
+        Gamerule_PlayGame = 0
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
         Gamerule_KeyADoor = 0
@@ -147,7 +152,7 @@ if Gamerule_PlayGame == 1:
         Gamerule_CorridorDamage = 0
         Gamerule_CorridorDamage2 = 0
         Gamerule_OutsideDoor1 = 0
-        Gamerule_Trapdoor = 0
+        Gamerule_Trapdoor = 1
         Gamerule_Stealth = 0
         Gamerule_FallBackSpawn = 0
         Gamerule_MagicDoor = 0
@@ -310,8 +315,6 @@ if Gamerule_PlayGame == 1:
                 print("based")
                 print("")
                 print("The end FLACEHOLDER BTW")
-
-            if Gamerule_HallwayEscape2 == 1
 
 
 
@@ -824,7 +827,6 @@ if Gamerule_PlayGame == 1:
                 Path = input("What do you want to do? 1, 2 or 3: ")
 
                 # RUN PAST GUARD ENDING (RNG)
-
             if Path == "1":
                 print()
                 print(
@@ -841,6 +843,7 @@ if Gamerule_PlayGame == 1:
                             "The guards spot you as you're running and catch you, they pin you to the ground and bring you back to the cell.")
                         print()
                         Gamerule_StartIntro1 = 1
+
                 if Path == "Tree" or Path == "tree":
                     TreeHide = random.randint(1, 5)
                     if TreeHide == 5 or TreeHide == 4:
@@ -854,12 +857,12 @@ if Gamerule_PlayGame == 1:
 
                         # Stealth Escape
 
-                if Path == "2":
+            elif Path == "2":
                     Gamerule_Stealth = 1
 
                 # Hide in bushes get caught
 
-            if Path == "3":
+            elif Path == "3":
                 print()
                 print("You hide in nearby bushes but the one of the gaurds stops walking and looks around")
                 print("He sees you hiding in the bush and pins you down, than he brings you back to the cell")
@@ -885,13 +888,23 @@ if Gamerule_PlayGame == 1:
                 RandomLever5 = random.choice(NumbersCode)
                 while Lever1 != RandomLever1 or Lever2 != RandomLever2 or Lever3 != RandomLever3 or Lever4 != RandomLever4 or Lever5 != RandomLever5:
                     print()
-                    Lever1 = input("Pull lever 1? 1 or 0: ")
-                    Lever2 = input("Pull lever 2? 1 or 0: ")
-                    Lever3 = input("Pull lever 3? 1 or 0: ")
-                    Lever4 = input("Pull lever 4? 1 or 0: ")
-                    Lever5 = input("Pull lever 5? 1 or 0: ")
+                    Lever1 = input("Input a number between 1 and 9: ")
+                    Lever2 = input("Input a number between 1 and 9: ")
+                    Lever3 = input("Input a number between 1 and 9: ")
+                    Lever4 = input("Input a number between 1 and 9: ")
+                    Lever5 = input("Input a number between 1 and 9: ")
                     print()
-                    if not (Lever1 != "1" or Lever2 != "0" or Lever3 != "1" or Lever4 != "1" or Lever5 != "0"):
+                    if Lever1 == RandomLever1:
+                        print("Number 1 was correct")
+                    if Lever2 == RandomLever2:
+                        print("Number 2 was correct")
+                    if Lever3 == RandomLever3:
+                        print("Number 3 was correct")
+                    if Lever4 == RandomLever4:
+                        print("Number 4 was correct")
+                    if Lever5 == RandomLever5:
+                        print("Number 5 was correct")
+                    if not (Lever1 != RandomLever1 or Lever2 != RandomLever2 or Lever3 != RandomLever3 or Lever4 != RandomLever4 or Lever5 != RandomLever5):
                         print("WRONG TRY AGAIN")
                 print("Ok fini")
                 # Hide in bushes get caught
