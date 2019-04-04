@@ -114,6 +114,8 @@ if Gamerule_PlayGame == 1:
     playagain = "yes"
     while playagain == "yes" or playagain == "y":
         # Variables
+        Dice1 = 0
+        Dice2 = 0
         DragonHP = 50000
         Count = 0
         HP = 20
@@ -142,7 +144,7 @@ if Gamerule_PlayGame == 1:
         # Gamerule Functions
         Gamerule_PreDragonFight = 0
         Gamerule_DragonFight = 0
-        Gamerule_PlayGame = 0
+        Gamerule_PlayGame = 1
         Gamerule_StartIntro1 = 0
         Gamerule_Dungeon = 0
         Gamerule_KeyADoor = 0
@@ -152,7 +154,7 @@ if Gamerule_PlayGame == 1:
         Gamerule_CorridorDamage = 0
         Gamerule_CorridorDamage2 = 0
         Gamerule_OutsideDoor1 = 0
-        Gamerule_Trapdoor = 1
+        Gamerule_Trapdoor = 0
         Gamerule_Stealth = 0
         Gamerule_FallBackSpawn = 0
         Gamerule_MagicDoor = 0
@@ -161,6 +163,7 @@ if Gamerule_PlayGame == 1:
         Gamerule_TeleportCube = 0
         Gamerule_TeleportOrb = 0
         Gamerule_HallwayEscape = 0
+        Gamerule_HallwayEscape2 = 0
         Gamerule_DPUEnding = 0
 
         # Start Game
@@ -241,6 +244,8 @@ if Gamerule_PlayGame == 1:
                     Gamerule_HallwayEscape = 1
                 if Path == "4":
                     print("You look around the room and don't find anything")
+                    print("You walk out of the room and see a gaurd, you run to the other side of the hallway")
+                    Gamerule_HallwayEscape = 1
                 if Path == "5":
                     Attacks = NormalWeaponAttacks[2]
                     Weapon = NormalWeaponList[2]
@@ -314,10 +319,95 @@ if Gamerule_PlayGame == 1:
                 print("")
                 print("based")
                 print("")
-                print("The end FLACEHOLDER BTW")
+                print("The end")
 
-
-
+            if Gamerule_HallwayEscape2 == 1:
+                print("You come into another hallway where you see two dice on a table")
+                print("You see a note and read it")
+                print("")
+                print("Different roles will treat you well")
+                print("Some might send you to hell")
+                print("A four is a treat good as day")
+                print("A seven might send you away")
+                print("An eleven might also give you a gift")
+                print("But a perfect double six will help you continue your quest")
+                while Dice1 + Dice2 != 12:
+                    print("")
+                    Path = ""
+                    while Path != "y" and Path != "Y":
+                        Path = input("Roll dice?(Saying no wont do anything)y/Y: ")
+                    print("You roll the dice")
+                    Dice1 = random.randint(1,6)
+                    Dice2 = random.randint(1,6)
+                    print("You land a " + str(Dice1) + " and a " + str(Dice2))
+                    print("")
+                    if Dice1 + Dice2 == 4:
+                        print()
+                        print("You feel a divine spirit give you power")
+                        print("Your HP has gone up by 5")
+                        print("")
+                        HP = HP + 5
+                        print("You now have " + HP + " HP")
+                        print("")
+                    if Dice1 + Dice2 == 7:
+                        print("A Goblin appears and starts attacking you")
+                        GoblinHP = 30
+                        while GoblinHP > 0 and HP > 0:
+                            print()
+                            print("The goblin says " + random.choice(Threats))
+                            RandomGoblinDamage = random.randint(3, 5)
+                            print("The goblin " + random.choice(GoblinAttacks) + " you for " + str(RandomGoblinDamage) + " HP")
+                            HP = HP - RandomGoblinDamage
+                            print()
+                            print("You now have " + str(HP) + " HP")
+                            print()
+                            print(Attacks)
+                            print()
+                            Attack = ""
+                            while not(Attack in Attacks):
+                                Attack = input("What attack do you want to use?")
+                            print("You " + Attack + " the enemy")
+                            print("You use your " + Weapon + " and deal " + str(random.randint(Damage[0],Damage[1])) + " damage")
+                            GoblinHP = GoblinHP - random.randint(Damage[0], Damage[1])
+                            print("")
+                            print("The goblin now has " + str(GoblinHP) + " HP left")
+                            print("")
+                    if Dice1 + Dice2 == 10:
+                        print()
+                        print("You feel a divine spirit give you power")
+                        print("Your HP has gone up by 5")
+                        print("")
+                        HP = HP + 5
+                        print("You now have " + HP + " HP")
+                        print("")
+                print("You roll a twelve and a door opens")
+                print("You expect a fight...")
+                print("Nothing ever comes and you stay in the room")
+                print("Then you hear a loud roar")
+                print("")
+                print("I am the goblin king! And you do not belong here!")
+                GoblinHP = 50
+                while GoblinHP > 0 and HP > 0:
+                    print()
+                    print("The goblin says " + random.choice(Threats))
+                    RandomGoblinDamage = random.randint(4, 6)
+                    print("The goblin " + random.choice(GoblinAttacks) + " you for " + str(RandomGoblinDamage) + " HP")
+                    HP = HP - RandomGoblinDamage
+                    print()
+                    print("You now have " + str(HP) + " HP")
+                    print()
+                    print(Attacks)
+                    print()
+                    Attack = ""
+                    while not (Attack in Attacks):
+                        Attack = input("What attack do you want to use?")
+                    print("You " + Attack + " the enemy")
+                    print(
+                        "You use your " + Weapon + " and deal " + str(random.randint(Damage[0], Damage[1])) + " damage")
+                    GoblinHP = GoblinHP - random.randint(Damage[0], Damage[1])
+                    print("")
+                    print("The goblin now has " + str(GoblinHP) + " HP left")
+                    print("")
                 # Player chooses to go into the dungeon
 
             if Gamerule_Dungeon == 1:
@@ -872,6 +962,7 @@ if Gamerule_PlayGame == 1:
                 # STEALTH ENDING
 
         if Gamerule_Stealth == 1:
+            Path = "2"
             if Path == "2":
                 print()
                 print("You go back into the dungeon where you see a pathway, you walk and see 5 levers")
@@ -904,8 +995,6 @@ if Gamerule_PlayGame == 1:
                         print("Number 4 was correct")
                     if Lever5 == RandomLever5:
                         print("Number 5 was correct")
-                    if not (Lever1 != RandomLever1 or Lever2 != RandomLever2 or Lever3 != RandomLever3 or Lever4 != RandomLever4 or Lever5 != RandomLever5):
-                        print("WRONG TRY AGAIN")
                 print("Ok fini")
                 # Hide in bushes get caught
 
