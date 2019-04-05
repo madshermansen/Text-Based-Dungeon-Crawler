@@ -11,17 +11,22 @@ import time
 # Introduction
 
 def DisplayIntroduction():
-    print(
-        "You wake up in a cold cold dungeon, and before you appear a dark siluette in the figure of a young boy or a woman, as your vision")
-    print("slowly appears. You try talking to the figure but it doesnt respond or look your way.")
+    print("You wake up in a cold cold dungeon, and before you appear a dark siluette in the figure of a young boy or a woman")
+    print("as your vision slowly appears. You try talking to the figure but it doesnt respond or look your way.")
+    time.sleep(3)
     print("Then you pass out...")
     print()
+    time.sleep(3)
     print("You wake up with a message carved in the wall.")
     print()
     print("YOU HAVE MESSED WITH DPU.")
+    time.sleep(0.5)
     print("A PUNISHMENT WILL BE BROUGHT")
+    time.sleep(0.5)
     print("UPON YOU, UNLESS YOU ESCAPE")
+    time.sleep(0.5)
     print("THIS DUNGEON")
+    time.sleep(3)
 
 
 # ---------------------------------------------------------------#
@@ -104,15 +109,27 @@ NormalWeaponAttacks = [["Shoot","Throw arrow"],["Stab","Slice","Ninjutsu kunai a
 
 # If want specific place change to 0 and change      if Gamerule_PlayGame == 1:      to      if Gamerule_PlayGame == 0:
 
+YouWin = ("""__  ______  __  __   _       _______   ____
+\ \/ / __ \/ / / /  | |     / /  _/ | / / /
+ \  / / / / / / /   | | /| / // //  |/ / / 
+ / / /_/ / /_/ /    | |/ |/ // // /|  /_/  
+/_/\____/\____/     |__/|__/___/_/ |_(_)   
+                                           """)
+YouLose = ("""__  ______  __  __   __    ____  _____ ________
+\ \/ / __ \/ / / /  / /   / __ \/ ___// ____/ /
+ \  / / / / / / /  / /   / / / /\__ \/ __/ / / 
+ / / /_/ / /_/ /  / /___/ /_/ /___/ / /___/_/  
+/_/\____/\____/  /_____/\____//____/_____(_)   
+                                               """)
+
 Gamerule_PlayGame = 1
 
 ##############################################################
-
 # Start Game
 
 if Gamerule_PlayGame == 1:
     playagain = "yes"
-    while playagain == "yes" or playagain == "y":
+    while playagain == "yes" or playagain == "y" or playagain == "Y" or playagain == "Yes" :
         # Variables
         Dice1 = 0
         Dice2 = 0
@@ -165,25 +182,29 @@ if Gamerule_PlayGame == 1:
         Gamerule_HallwayEscape = 0
         Gamerule_HallwayEscape2 = 0
         Gamerule_DPUEnding = 0
+        Gamerule_Trapped = 0
 
         # Start Game
 
-        if Gamerule_PlayGame == 1:
+        if Gamerule_PlayGame == 1 or Gamerule_StartIntro1 == 1:
             DisplayIntroduction()
             print()
             print("1: You stand up, you see that the wall is old and has a large crack running through it.")
             print("2: You also see that the door is slightly ajar and could be pushed open")
             print()
+            time.sleep(5)
             choice = choosepath()
             if choice == "1":
                 print("You try pulling open the crack but nothing happens")
                 print("You decide to run at the wall breaking it open but getting hurt")
                 print()
+                time.sleep(3)
                 HP = (HP - NegativeHP)
                 print ("You now have " + str(HP) + "HP")
                 print()
                 print("There is a hollow room on the other side of the wall")
                 WallBreak = random.randint(1, 2)
+                time.sleep(3)
                 if WallBreak == 1:
                     print("There is a statue that casts a blessing on you")
                     print("As you walk out of the room you start to feel more refreshed")
@@ -308,18 +329,24 @@ if Gamerule_PlayGame == 1:
             if Gamerule_DPUEnding == 1:
                 print("It flashes three images")
                 print("")
+                time.sleep(0.1)
                 print("DIGITAL")
+                time.sleep(0.1)
                 print("PROCESSING")
+                time.sleep(0.1)
                 print("UNIT")
                 print("")
+                time.sleep(0.5)
                 print("The room starts disappearing slowly along with the rest of the dungeon")
                 print("You are standing in a empty area with nothing")
                 print("You float in the air and stand still")
                 print("Slowly a man with a black cloak walks up to you")
+                time.sleep(1)
                 print("")
                 print("based")
                 print("")
-                print("The end")
+                time.sleep(2)
+                print(YouWin)
 
             if Gamerule_HallwayEscape2 == 1:
                 print("You come into another hallway where you see two dice on a table")
@@ -520,13 +547,10 @@ if Gamerule_PlayGame == 1:
                     print("You decide to walk back")
                     print()
                     print("1: You see one Giant door with a lever to open it")
-                    print("2: And a seccond room that is locked and needs a key to open")
                     Path = ""
-                    while Path != "1" and Path != "2":
-                        Path = input("Which door do you want to open? 1 or 2: ")
+                    while Path != "1":
+                        Path = input("Which door do you want to open? 1: ")
                     print()
-                    if Path == "2":
-                        Gamerule_KeyADoor = 1
                     if Path == "1":
                         Gamerule_Start_MazeDoor = 1
 
@@ -605,6 +629,19 @@ if Gamerule_PlayGame == 1:
                     Gamerule_KeyADoor = 1
                 elif Path == "1":
                     Gamerule_Start_MazeDoor = 1
+        if Gamerule_TeleportCube == 1:
+            print("You touch the vortex and feel worse")
+            print("You start feeling powerful and suddenly you black out")
+            print("You wake up and see different things")
+            print("1: You see a gate that you can slide open with a pulley system")
+            print("2: You see a door that is made from shiny black metals")
+            while Path != "1" and Path != "2":
+                Path = input("Which path do you want to take")
+            if Path == "1":
+                print("You pull on the rope slowly opening the door")
+            if Path == "2":
+                print("You open the door slowly and walk inside, The door slams shut when you walk in")
+                Gamerule_DragonFight = 1
 
         if Gamerule_Start_MazeDoor == 1:
             print()
@@ -750,24 +787,23 @@ if Gamerule_PlayGame == 1:
                 elif Count == 12:
                     AnswerKey = "2"
                     Count = StartMaze()
-
             print("You walk through the door and the maze is over.")
-            print("1: You see a blue shining orb in a glass cage")
-            print("2: You see a gate that you can slide open with a pulley system")
-            print("3: You see a door that is made from shiny black metals")
+            print("1: You see a gate that you can slide open with a pulley system")
+            print("2: You see a door that is made from shiny black metals")
             Path = ""
-            while Path != "1" and Path != "2" and Path != "3":
+            while Path != "1" and Path != "2":
                 Path = input("Which path do you want to take")
             if Path == "1":
-                print("You break the cage open and take the orb")
-                print("You feel immense power flowing through your body")
-                print("and suddenly, you vanish")
-                Gamerule_TeleportOrb = 1
-            if Path == "2":
                 print("You pull on the rope slowly opening the door")
-            if Path == "3":
+                Gamerule_Trapped = 1
+            if Path == "2":
                 print("You open the door slowly and walk inside, The door slams shut when you walk in")
-                Gamerule_DragonFight = 1
+                Gamerule_PreDragonFight = 1
+
+        if Gamerule_Trapped == 1:
+            print("You pull on the rope and walk into the room")
+            print("The gate crashes down on you and you cant find anything to do")
+            print("You die in the room like the scum you are")
 
         if Gamerule_PreDragonFight == 1:
             print("When walking into the room you see a spear with a green tip on the end")
@@ -1010,3 +1046,5 @@ if Gamerule_PlayGame == 1:
             HP = (HP - NegativeHP)
             print("You now have " + str(HP) + " HP")
             Gamerule_StartIntro1 = 1
+        playagain = ""
+        playagain = input("Do you want to play again?(Y/M): ")
