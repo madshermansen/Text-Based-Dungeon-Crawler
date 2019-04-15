@@ -62,31 +62,12 @@ def StartMaze():
 
 
 # ---------------------------------------------------------------#
-
-HP = 20
-NegativeHP = 0
-GoblinHP = 6
-ChildGoblinHP = 4
-
-
 def LoseHP():
     print("Save Text = You have lost some HP")
     print("You have lost " + str(NegativeHP) + (" HP"))
 
 
 DrinkPotion = ""
-
-# Play again function
-
-
-# playagain = "yes"
-# while playagain == "yes" or playagain == "y":
-#    DisplayIntroduction()
-#    choice = choosepath()
-#    checkpath(choice)
-#    playagain = input("Do you want to play again? type yes or y to continue playing: ")
-
-
 Threats = (
     ["Ill beat you silly!", "You're just a mere mortal! Get out of my sight", "What if i turn you into a toaster!",
      "I'll beat you in chess!", "You are a rump-faced ape!", "Im not insulting you, im describing you",
