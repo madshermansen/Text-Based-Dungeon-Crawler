@@ -1,12 +1,9 @@
 # Name: Mads
 # Date: 05/01/19
-# Description: Epic Dungeon adventure with determining if you will escape or not.
+# Description: Epic Dungeon adventure
 
 import random
 import time
-
-
-# ---------------------------------------------------------------#
 
 # Introduction
 
@@ -28,9 +25,6 @@ def DisplayIntroduction():
     print("THIS DUNGEON")
     time.sleep(3)
 
-
-# ---------------------------------------------------------------#
-
 # Choosing Path
 
 def choosepath():
@@ -39,9 +33,6 @@ def choosepath():
         path = input("Which path will you take? 1 or 2?: ")
 
     return path
-
-
-# ---------------------------------------------------------------#
 
 def StartMaze():
     print("Room " + str(Count + 1))
@@ -60,8 +51,6 @@ def StartMaze():
         print("You walk in the wrong door. and head back to the start of the maze")
         return (0)
 
-
-# ---------------------------------------------------------------#
 def LoseHP():
     print("Save Text = You have lost some HP")
     print("You have lost " + str(NegativeHP) + (" HP"))
@@ -82,11 +71,7 @@ NormalWeaponList = ["Bow", "Shiv", "Iron Sword"]
 NormalWeaponDamage = [[10, 30],[6, 19],[12, 32]]
 NormalWeaponAttacks = [["Shoot","Throw arrow"],["Stab","Slice","Ninjutsu kunai attack"],["Slice","Stab","Pummel","Riposte"]]
 
-##############################################################
-
 # Run Game #
-
-##############################################################
 
 # If want specific place change to 0 and change      if Gamerule_PlayGame == 1:      to      if Gamerule_PlayGame == 0:
 
@@ -105,7 +90,6 @@ YouLose = ("""__  ______  __  __   __    ____  _____ ________
 
 Gamerule_PlayGame = 1
 
-##############################################################
 # Start Game
 
 if Gamerule_PlayGame == 1:
