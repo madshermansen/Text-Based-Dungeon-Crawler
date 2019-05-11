@@ -1,3 +1,13 @@
+## Installation
+
+```
+# clone the repository
+$ git clone https://github.com/KarlofKuwait/Adventure-Game-Text-Based-.git
+
+# install python if it isnt installed yet
+```
+run as a script
+
 # Adventure-Game-Text-Based-
 Adventure game following main character(You) through a dungeon. The goal is to escape and get free.
 
@@ -7,12 +17,19 @@ Adventure game following main character(You) through a dungeon. The goal is to e
 
 The map was created using mspaint, some features were not added and others were ditched. The map shows possible directions with color codes
 
-Red - Take Damage or Not Obvious Entry
+- Red
 
-Yellow - Can always take this path
+Take Damage or Not Obvious Entry
 
-Green - Relies on RNG
+- Yellow
 
-Purple - Endgame(You win)
+Can always take this path
 
-Enjoy the text based adventure game, try finding all escapes.
+- Green
+
+Relies on RNG
+
+- Purple
+
+Endgame(You win)
+
