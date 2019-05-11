@@ -1,6 +1,8 @@
-# Name: Mads
-# Date: 05/01/19
-# Description: Epic Dungeon adventure
+"""
+Name: Adventure Game
+Made By: Mads Hermansen
+Github: https://github.com/KarlofKuwait
+"""
 
 import random
 import time
