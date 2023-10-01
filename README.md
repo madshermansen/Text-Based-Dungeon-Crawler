@@ -2,7 +2,7 @@
 
 ```
 # clone the repository
-$ git clone https://github.com/KarlofKuwait/Adventure-Game-Text-Based-.git
+$ git clone https://github.com/madshermansen/Text-Based-Dungeon-Crawler.git
 
 # install python if it isnt installed yet
 ```
